@@ -1,0 +1,48 @@
+{
+  "name": "digito-back",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build-ts",
+    "run:services": "docker-compose up -d && exit 0",
+    "stop:services": "docker-compose kill",
+    "remove:services": "docker-compose rm --stop --force",
+    "deploy:docker": "npm run build && npm run run:services",
+    "start": "npm run build && npm run serve",
+    "backup": "cross-env PGPASSWORD=17821782 ",
+    "serve": "cross-env NODE_ENV=production node --inspect build/server.js",
+    "build-ts": "tsc",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-node": "nodemon -r dotenv/config build/server.js",
+    "watch-ts": "tsc -w",
+    "nodemon": "nodemon"
+  },
+  "dependencies": {
+    "@fastify/cors": "7.0.0",
+    "@fastify/swagger": "^8.12.0",
+    "@hapi/joi": "^17.1.1",
+    "boom": "^7.3.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "fastify": "3.21.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^6.0.6",
+    "pg": "^8.11.3",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1"
+  },
+  "devDependencies": {
+    "@types/hapi__joi": "^17.1.12",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/pg": "^8.10.9",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "nodemon": "^2.0.12",
+    "typescript": "^4.7.4",
+    "typescript-tslint-plugin": "^1.0.2"
+  },
+  "keywords": [],
+  "author": "Cristian Mota <christianmota07@gmail.com>",
+  "license": "MIT"
+}
