@@ -5,10 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build-ts",
-    "run:services": "docker-compose up -d && exit 0",
-    "stop:services": "docker-compose kill",
-    "remove:services": "docker-compose rm --stop --force",
-    "deploy:docker": "npm run build && npm run run:services",
     "start": "npm run build && npm run serve",
     "backup": "cross-env PGPASSWORD=17821782 ",
     "serve": "cross-env NODE_ENV=production node --inspect build/server.js",
